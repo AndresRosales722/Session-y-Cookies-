@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <% if (locals.userData) { %>
+     <section>
+         <p>Hola <%= userData.name %>, elegiste el color <%= userData.color  %>, tu email es: <%= userData.email %> <% userData.age !== "" && `y tu edad es ${userData.age}` %>  </p>
+     </section>
+
+    <% } %>
+    <form action="/" method="post">
+        <div>
+            <label for="name">ingrese su nombre</label>
+            <input type="text" name="name" id="name">
+            <% if (locals.errors && errors.name) { %>
+                <small><%= errors.name.msg %></small>
+            <% } %>
+        </div>
+
+        <div>
+            <select name="color" id="">
+
+                <option hidden selected value="">elija un color</option>
+                <option value="red">rojo</option>
+                <option value="blue">azul</option>
+                <option value="green">verde</option>
+                <option value="yellow">amarillo</option>
+            </select>
+            <% if (locals.errors && errors.color) { %>
+                <small><%= errors.color.msg %></small>
+            <% } %>
+
+        </div>
+
+        <div>
+            <label for="email">ingrese su email</label>
+            <input type="email" name="email" id="email">
+            <% if (locals.errors && errors.name) { %>
+                <small><%= errors.email.msg %></small>
+            <% } %>
+        </div>
+
+        <div>
+            <label for="age">ingrese su edad</label>
+            <input type="number" name="age" id="age">
+            <% if (locals.errors && errors.age) { %>
+                <small><%= errors.age.msg %></small>
+            <% } %>
+        </div>
+        <button type="submit">enviar</button>
+
+    </form>
+</body>
+</html>
